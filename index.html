@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로또 번호 추천</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1em;
+        }
+
+        .numbers-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .number-ball {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .number-ball:nth-child(1) { background: linear-gradient(135deg, #ffc837 0%, #ff8008 100%); }
+        .number-ball:nth-child(2) { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .number-ball:nth-child(3) { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .number-ball:nth-child(4) { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .number-ball:nth-child(5) { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .number-ball:nth-child(6) { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+
+        .generate-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .generate-btn:active {
+            transform: translateY(0);
+        }
+
+        .history {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+        }
+
+        .history h3 {
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .history-item {
+            background: #f8f9fa;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .history-ball {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .clear-btn {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #666;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .clear-btn:hover {
+            background: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎰 로또 번호 생성기</h1>
+        <p class="subtitle">행운의 번호를 추천해드립니다!</p>
+
+        <div class="numbers-container" id="numbersContainer">
+            <div class="number-ball">?</div>
+            <div class="number-ball">?</div>
+            <div class="number-ball">?</div>
+            <div class="number-ball">?</div>
+            <div class="number-ball">?</div>
+            <div class="number-ball">?</div>
+        </div>
+
+        <button class="generate-btn" onclick="generateNumbers()">번호 생성하기</button>
+
+        <div class="history">
+            <h3>생성 기록</h3>
+            <div id="historyContainer"></div>
+            <button class="clear-btn" onclick="clearHistory()">기록 삭제</button>
+        </div>
+    </div>
+
+    <script>
+        let history = [];
+
+        function generateNumbers() {
+            const numbers = [];
+
+            // 1-45 사이의 중복되지 않는 6개의 숫자 생성
+            while (numbers.length < 6) {
+                const num = Math.floor(Math.random() * 45) + 1;
+                if (!numbers.includes(num)) {
+                    numbers.push(num);
+                }
+            }
+
+            // 번호 정렬
+            numbers.sort((a, b) => a - b);
+
+            // 화면에 표시
+            displayNumbers(numbers);
+
+            // 기록에 추가
+            addToHistory(numbers);
+        }
+
+        function displayNumbers(numbers) {
+            const container = document.getElementById('numbersContainer');
+            container.innerHTML = '';
+
+            numbers.forEach((num, index) => {
+                const ball = document.createElement('div');
+                ball.className = 'number-ball';
+                ball.textContent = num;
+                ball.style.animationDelay = `${index * 0.1}s`;
+                container.appendChild(ball);
+            });
+        }
+
+        function addToHistory(numbers) {
+            history.unshift(numbers);
+
+            // 최대 5개까지만 저장
+            if (history.length > 5) {
+                history.pop();
+            }
+
+            updateHistoryDisplay();
+        }
+
+        function updateHistoryDisplay() {
+            const container = document.getElementById('historyContainer');
+
+            if (history.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #999;">아직 생성된 번호가 없습니다.</p>';
+                return;
+            }
+
+            container.innerHTML = '';
+
+            history.forEach(numbers => {
+                const item = document.createElement('div');
+                item.className = 'history-item';
+
+                numbers.forEach(num => {
+                    const ball = document.createElement('div');
+                    ball.className = 'history-ball';
+                    ball.textContent = num;
+                    item.appendChild(ball);
+                });
+
+                container.appendChild(item);
+            });
+        }
+
+        function clearHistory() {
+            if (confirm('생성 기록을 모두 삭제하시겠습니까?')) {
+                history = [];
+                updateHistoryDisplay();
+            }
+        }
+
+        // 페이지 로드 시 초기 표시
+        updateHistoryDisplay();
+    </script>
+</body>
+</html>
