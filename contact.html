@@ -170,6 +170,33 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
+        .home-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .home-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .home-btn:active {
+            transform: translateY(0);
+        }
+
         .success-message {
             display: none;
             background: #4caf50;
@@ -203,6 +230,7 @@
 </head>
 <body>
     <div class="container">
+        <a href="index.html" class="home-btn">🏠 홈</a>
         <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
         <h1>🤝 제휴 문의</h1>
         <p class="subtitle">제휴 제안이나 문의사항을 남겨주세요!</p>
