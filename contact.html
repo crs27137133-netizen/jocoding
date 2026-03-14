@@ -170,10 +170,16 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
-        .home-btn {
+        .nav-buttons {
             position: absolute;
             top: 20px;
             left: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
@@ -188,12 +194,12 @@
             display: inline-block;
         }
 
-        .home-btn:hover {
+        .nav-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .home-btn:active {
+        .nav-btn:active {
             transform: translateY(0);
         }
 
@@ -253,7 +259,10 @@
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="home-btn">🏠 홈</a>
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-btn">🏠 홈</a>
+            <a href="animal-test.html" class="nav-btn">🐶😺 동물상 테스트</a>
+        </div>
         <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
         <h1>🤝 제휴 문의</h1>
         <p class="subtitle">제휴 제안이나 문의사항을 남겨주세요!</p>

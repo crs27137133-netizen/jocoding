@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동물상 테스트</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 700px;
+            width: 100%;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        body.dark-mode .container {
+            background: #0f3460;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode h1 {
+            color: #e8e8e8;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1em;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .subtitle {
+            color: #b8b8b8;
+        }
+
+        .camera-container {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        #webcam-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+        }
+
+        body.dark-mode #webcam-container {
+            background: #1a1a2e;
+        }
+
+        #webcam-container canvas {
+            border-radius: 15px;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .start-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .start-btn:active {
+            transform: translateY(0);
+        }
+
+        .start-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        #label-container {
+            margin-top: 30px;
+        }
+
+        .prediction-item {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .prediction-item {
+            background: #1a1a2e;
+            color: #e8e8e8;
+        }
+
+        .prediction-item.winner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .prediction-label {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .prediction-bar-container {
+            flex: 1;
+            margin: 0 15px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            height: 20px;
+            overflow: hidden;
+        }
+
+        .prediction-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+            transition: width 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .prediction-item.winner .prediction-bar {
+            background: linear-gradient(90deg, #ffd700 0%, #ffed4e 100%);
+        }
+
+        .prediction-percentage {
+            font-size: 1.1em;
+            font-weight: bold;
+            min-width: 60px;
+            text-align: right;
+        }
+
+        .result-message {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            background: #f0f0f0;
+            border-radius: 15px;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+            display: none;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode .result-message {
+            background: #1a1a2e;
+            color: #e8e8e8;
+        }
+
+        .result-message.show {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .home-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .home-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .home-btn:active {
+            transform: translateY(0);
+        }
+
+        .loading {
+            text-align: center;
+            color: #666;
+            font-size: 1.1em;
+            padding: 20px;
+        }
+
+        body.dark-mode .loading {
+            color: #b8b8b8;
+        }
+
+        .comments-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+            transition: border-color 0.3s ease;
+        }
+
+        body.dark-mode .comments-section {
+            border-top-color: #2a2a4e;
+        }
+
+        .comments-title {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .comments-title {
+            color: #e8e8e8;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            color: #1565c0;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode .info-box {
+            background: #1a2942;
+            border-left-color: #64b5f6;
+            color: #90caf9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="home-btn">🏠 홈</a>
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
+        <h1>🐶😺 동물상 테스트</h1>
+        <p class="subtitle">AI가 당신의 동물상을 분석해드립니다!</p>
+
+        <div class="info-box">
+            💡 카메라 시작 버튼을 누르면 실시간으로 분석됩니다. 얼굴을 카메라에 가까이 대주세요!
+        </div>
+
+        <button class="start-btn" onclick="init()" id="startBtn">📷 카메라 시작</button>
+
+        <div class="camera-container">
+            <div id="webcam-container"></div>
+        </div>
+
+        <div id="label-container"></div>
+        <div id="result-message" class="result-message"></div>
+
+        <div class="comments-section">
+            <h3 class="comments-title">💬 댓글</h3>
+            <div id="disqus_thread"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script>
+        const URL = "https://teachablemachine.withgoogle.com/models/KC8c3tEJd/";
+        let model, webcam, labelContainer, maxPredictions;
+        let isRunning = false;
+
+        async function init() {
+            if (isRunning) return;
+
+            const startBtn = document.getElementById('startBtn');
+            startBtn.disabled = true;
+            startBtn.textContent = '⏳ 로딩 중...';
+
+            try {
+                const modelURL = URL + "model.json";
+                const metadataURL = URL + "metadata.json";
+
+                model = await tmImage.load(modelURL, metadataURL);
+                maxPredictions = model.getTotalClasses();
+
+                const flip = true;
+                webcam = new tmImage.Webcam(400, 400, flip);
+                await webcam.setup();
+                await webcam.play();
+                window.requestAnimationFrame(loop);
+
+                document.getElementById("webcam-container").innerHTML = '';
+                document.getElementById("webcam-container").appendChild(webcam.canvas);
+
+                labelContainer = document.getElementById("label-container");
+                labelContainer.innerHTML = '';
+                for (let i = 0; i < maxPredictions; i++) {
+                    labelContainer.appendChild(document.createElement("div"));
+                }
+
+                isRunning = true;
+                startBtn.textContent = '✅ 카메라 실행 중';
+            } catch (error) {
+                console.error('Error:', error);
+                startBtn.disabled = false;
+                startBtn.textContent = '❌ 오류 발생 - 다시 시도';
+                alert('카메라를 시작할 수 없습니다. 카메라 권한을 확인해주세요.');
+            }
+        }
+
+        async function loop() {
+            webcam.update();
+            await predict();
+            window.requestAnimationFrame(loop);
+        }
+
+        async function predict() {
+            const prediction = await model.predict(webcam.canvas);
+            let maxProb = 0;
+            let maxIndex = 0;
+
+            for (let i = 0; i < maxPredictions; i++) {
+                const probability = prediction[i].probability;
+                const percentage = (probability * 100).toFixed(1);
+
+                const item = labelContainer.childNodes[i];
+                item.className = 'prediction-item';
+
+                if (probability > maxProb) {
+                    maxProb = probability;
+                    maxIndex = i;
+                }
+
+                item.innerHTML = `
+                    <span class="prediction-label">${getEmoji(prediction[i].className)} ${prediction[i].className}</span>
+                    <div class="prediction-bar-container">
+                        <div class="prediction-bar" style="width: ${percentage}%"></div>
+                    </div>
+                    <span class="prediction-percentage">${percentage}%</span>
+                `;
+            }
+
+            labelContainer.childNodes[maxIndex].classList.add('winner');
+
+            // Show result message
+            const resultMessage = document.getElementById('result-message');
+            const winnerName = prediction[maxIndex].className;
+            resultMessage.textContent = `당신은 ${getEmoji(winnerName)} ${winnerName} 입니다!`;
+            resultMessage.classList.add('show');
+        }
+
+        function getEmoji(className) {
+            const lowerClass = className.toLowerCase();
+            if (lowerClass.includes('dog') || lowerClass.includes('강아지')) {
+                return '🐶';
+            } else if (lowerClass.includes('cat') || lowerClass.includes('고양이')) {
+                return '😺';
+            }
+            return '🐾';
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.getElementById('themeToggle');
+
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeToggle = document.getElementById('themeToggle');
+
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeToggle.textContent = '☀️';
+            } else {
+                themeToggle.textContent = '🌙';
+            }
+        }
+
+        loadTheme();
+
+        // Disqus 설정
+        var disqus_config = function () {
+            this.page.url = window.location.href;
+            this.page.identifier = 'animal-test';
+        };
+
+        (function() {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://test-ciis3ncqg6.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</body>
+</html>

@@ -232,10 +232,16 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
-        .contact-btn {
+        .nav-buttons {
             position: absolute;
             top: 20px;
             left: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
@@ -250,12 +256,12 @@
             display: inline-block;
         }
 
-        .contact-btn:hover {
+        .nav-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .contact-btn:active {
+        .nav-btn:active {
             transform: translateY(0);
         }
 
@@ -285,7 +291,10 @@
 </head>
 <body>
     <div class="container">
-        <a href="contact.html" class="contact-btn">🤝 제휴문의</a>
+        <div class="nav-buttons">
+            <a href="animal-test.html" class="nav-btn">🐶😺 동물상 테스트</a>
+            <a href="contact.html" class="nav-btn">🤝 제휴문의</a>
+        </div>
         <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
         <h1>🎰 로또 번호 생성기</h1>
         <p class="subtitle">행운의 번호를 추천해드립니다!</p>
