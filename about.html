@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="조코딩은 일상생활에 유용한 AI 기반 웹 도구와 재미있는 서비스를 제공합니다. 로또 번호 생성, 동물상 테스트 등을 무료로 이용하세요.">
+    <meta name="keywords" content="로또 번호 생성기, 동물상 테스트, AI 도구, 무료 웹 서비스">
+    <title>사이트 소개 - 조코딩</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            margin: 0 auto;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        body.dark-mode .container {
+            background: #0f3460;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .nav-buttons {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            transition: color 0.3s ease;
+            margin-top: 40px;
+        }
+
+        body.dark-mode h1 {
+            color: #e8e8e8;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .subtitle {
+            color: #b8b8b8;
+        }
+
+        .content {
+            color: #333;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .content {
+            color: #e8e8e8;
+        }
+
+        h2 {
+            color: #667eea;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode h2 {
+            color: #a5b4fc;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        body.dark-mode .feature-card {
+            background: #1a1a2e;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-color: #667eea;
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .feature-title {
+            color: #e8e8e8;
+        }
+
+        .feature-description {
+            color: #666;
+            font-size: 0.95em;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .feature-description {
+            color: #b8b8b8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(67, 233, 123, 0.3);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .highlight-box h3 {
+            color: white;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode .stat-item {
+            background: #1a1a2e;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .stat-number {
+            color: #a5b4fc;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .stat-label {
+            color: #b8b8b8;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            transition: border-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode footer {
+            border-top-color: #2a2a4e;
+            color: #b8b8b8;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        body.dark-mode footer a {
+            color: #a5b4fc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-btn">🏠 홈</a>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
+
+        <h1>✨ 조코딩 소개</h1>
+        <p class="subtitle">일상을 더 재미있고 편리하게 만드는 무료 웹 도구</p>
+
+        <div class="content">
+            <p>안녕하세요! <strong>조코딩</strong>에 오신 것을 환영합니다.</p>
+            <p>조코딩은 일상생활에서 유용하게 사용할 수 있는 다양한 웹 기반 도구와 재미있는 AI 서비스를 무료로 제공하는 플랫폼입니다.</p>
+
+            <h2>🎯 우리의 목표</h2>
+            <p>조코딩은 복잡한 설치나 회원가입 없이 누구나 쉽고 빠르게 접근할 수 있는 웹 도구를 제공합니다. 우리의 목표는 단순하지만 유용한 서비스를 통해 사용자의 일상을 조금 더 즐겁고 편리하게 만드는 것입니다.</p>
+
+            <h2>🚀 주요 서비스</h2>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎰</div>
+                    <div class="feature-title">로또 번호 생성기</div>
+                    <div class="feature-description">
+                        행운의 로또 번호를 자동으로 생성해드립니다. 무작위 알고리즘을 사용하여 1-45 사이의 중복되지 않는 6개의 숫자를 추천합니다. 생성 기록도 확인할 수 있어요!
+                    </div>
+                    <a href="index.html" class="cta-button" style="font-size: 0.9em; padding: 10px 20px; margin-top: 15px;">체험하기</a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🐶😺</div>
+                    <div class="feature-title">동물상 테스트</div>
+                    <div class="feature-description">
+                        Google Teachable Machine AI를 활용한 재미있는 동물상 테스트! 얼굴 사진을 업로드하면 AI가 강아지상인지 고양이상인지 분석해드립니다.
+                    </div>
+                    <a href="animal-test.html" class="cta-button" style="font-size: 0.9em; padding: 10px 20px; margin-top: 15px;">체험하기</a>
+                </div>
+            </div>
+
+            <h2>💡 조코딩의 특징</h2>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">무료</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">회원가입 불필요</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">언제나 이용 가능</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">📱</div>
+                    <div class="stat-label">모바일 지원</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>🌓 다크모드 지원</h3>
+                <p>모든 페이지에서 다크모드를 지원하여 눈의 피로를 줄이고 야간에도 편안하게 이용할 수 있습니다.</p>
+            </div>
+
+            <h2>🔒 개인정보 보호</h2>
+            <p>조코딩은 사용자의 개인정보 보호를 최우선으로 생각합니다:</p>
+            <ul style="margin-left: 30px; margin-bottom: 20px;">
+                <li>동물상 테스트용 이미지는 서버에 저장되지 않으며 분석 즉시 삭제됩니다</li>
+                <li>로또 번호는 브라우저 로컬 스토리지에만 저장되어 외부로 전송되지 않습니다</li>
+                <li>필요한 경우에만 최소한의 정보를 수집합니다</li>
+            </ul>
+            <p>자세한 내용은 <a href="privacy.html">개인정보처리방침</a>을 참조해주세요.</p>
+
+            <h2>🎨 기술 스택</h2>
+            <p>조코딩은 최신 웹 기술을 활용하여 제작되었습니다:</p>
+            <ul style="margin-left: 30px; margin-bottom: 20px;">
+                <li><strong>프론트엔드</strong>: HTML5, CSS3, JavaScript (Vanilla)</li>
+                <li><strong>AI/ML</strong>: TensorFlow.js, Google Teachable Machine</li>
+                <li><strong>호스팅</strong>: Cloudflare Pages</li>
+                <li><strong>폼 처리</strong>: Formspree</li>
+                <li><strong>댓글</strong>: Disqus</li>
+            </ul>
+
+            <h2>📬 제휴 및 문의</h2>
+            <p>서비스에 대한 제안, 제휴 문의, 피드백 등은 언제든지 환영합니다!</p>
+            <p style="text-align: center; margin-top: 20px;">
+                <a href="contact.html" class="cta-button">제휴 문의하기</a>
+            </p>
+
+            <h2>🔮 앞으로의 계획</h2>
+            <p>조코딩은 계속해서 발전합니다. 앞으로 더 많은 유용하고 재미있는 도구들을 추가할 예정입니다:</p>
+            <ul style="margin-left: 30px; margin-bottom: 20px;">
+                <li>추가 AI 기반 재미 테스트</li>
+                <li>일상 생활 편의 도구</li>
+                <li>교육용 콘텐츠</li>
+                <li>사용자 피드백 기반 신규 서비스</li>
+            </ul>
+
+            <div class="highlight-box">
+                <h3>💝 감사합니다</h3>
+                <p>조코딩을 이용해주셔서 감사합니다. 여러분의 소중한 의견이 서비스를 더욱 발전시킵니다!</p>
+            </div>
+
+            <footer>
+                <p>&copy; 2026 조코딩. All rights reserved.</p>
+                <p>
+                    <a href="index.html">홈</a> |
+                    <a href="privacy.html">개인정보처리방침</a> |
+                    <a href="terms.html">이용약관</a> |
+                    <a href="about.html">사이트 소개</a> |
+                    <a href="contact.html">문의하기</a>
+                </p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.getElementById('themeToggle');
+
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeToggle = document.getElementById('themeToggle');
+
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeToggle.textContent = '☀️';
+            } else {
+                themeToggle.textContent = '🌙';
+            }
+        }
+
+        loadTheme();
+    </script>
+</body>
+</html>

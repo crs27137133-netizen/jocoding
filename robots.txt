@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://jocoding-819.pages.dev/sitemap.xml
+
+# Disallow specific paths
+Disallow: /.wrangler/
+Disallow: /.git/

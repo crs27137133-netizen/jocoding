@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="조코딩 사이트의 이용약관입니다. 서비스 이용 시 준수해야 할 규정을 안내합니다.">
+    <title>이용약관 - 조코딩</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            margin: 0 auto;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        body.dark-mode .container {
+            background: #0f3460;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .nav-buttons {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            transition: color 0.3s ease;
+            margin-top: 40px;
+        }
+
+        body.dark-mode h1 {
+            color: #e8e8e8;
+        }
+
+        .last-updated {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .last-updated {
+            color: #b8b8b8;
+        }
+
+        .content {
+            color: #333;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .content {
+            color: #e8e8e8;
+        }
+
+        h2 {
+            color: #667eea;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode h2 {
+            color: #a5b4fc;
+        }
+
+        h3 {
+            color: #764ba2;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode h3 {
+            color: #c4b5fd;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode .highlight {
+            background: #1a1a2e;
+            border-left-color: #a5b4fc;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            transition: border-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode footer {
+            border-top-color: #2a2a4e;
+            color: #b8b8b8;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        body.dark-mode footer a {
+            color: #a5b4fc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-btn">🏠 홈</a>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
+
+        <h1>📜 이용약관</h1>
+        <p class="last-updated">최종 수정일: 2026년 3월 15일</p>
+
+        <div class="content">
+            <div class="highlight">
+                <strong>조코딩</strong> 서비스를 이용해 주셔서 감사합니다. 본 약관은 서비스 이용과 관련된 권리, 의무 및 책임사항을 규정합니다.
+            </div>
+
+            <h2>제1조 (목적)</h2>
+            <p>본 약관은 조코딩(이하 "사이트")이 제공하는 모든 서비스(이하 "서비스")의 이용조건 및 절차, 회원과 사이트 간의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.</p>
+
+            <h2>제2조 (용어의 정의)</h2>
+            <ol>
+                <li><strong>서비스</strong>: 사이트가 제공하는 로또 번호 생성기, 동물상 테스트 등 모든 기능</li>
+                <li><strong>사용자</strong>: 본 약관에 따라 사이트가 제공하는 서비스를 이용하는 자</li>
+                <li><strong>콘텐츠</strong>: 사이트에서 제공하는 정보, 데이터, 텍스트, 이미지 등 모든 자료</li>
+            </ol>
+
+            <h2>제3조 (약관의 게시와 개정)</h2>
+            <ol>
+                <li>본 약관은 서비스 화면에 게시하거나 기타의 방법으로 사용자에게 공지합니다.</li>
+                <li>사이트는 필요한 경우 관련 법령을 위배하지 않는 범위에서 본 약관을 개정할 수 있습니다.</li>
+                <li>약관 개정 시 적용일자 및 개정사유를 명시하여 최소 7일 전에 공지합니다.</li>
+            </ol>
+
+            <h2>제4조 (서비스의 제공)</h2>
+            <p>사이트는 다음과 같은 서비스를 제공합니다:</p>
+            <ul>
+                <li><strong>로또 번호 생성기</strong>: 무작위 로또 번호 생성 및 이력 관리</li>
+                <li><strong>동물상 테스트</strong>: AI 기반 이미지 분석을 통한 동물상 판별</li>
+                <li><strong>제휴 문의</strong>: 제휴 및 문의사항 접수</li>
+                <li><strong>기타</strong>: 사이트가 추가 개발하거나 제휴 계약 등을 통해 제공하는 서비스</li>
+            </ul>
+
+            <h2>제5조 (서비스 이용)</h2>
+            <ol>
+                <li>서비스는 연중무휴 1일 24시간 제공함을 원칙으로 합니다.</li>
+                <li>사이트는 시스템 정기점검, 증설 및 교체를 위해 서비스를 일시 중단할 수 있으며, 예정된 작업의 경우 사전에 공지합니다.</li>
+                <li>사이트는 서비스 개선을 위해 기술적 사양을 변경할 수 있습니다.</li>
+            </ol>
+
+            <h2>제6조 (사용자의 의무)</h2>
+            <p>사용자는 다음 행위를 하여서는 안 됩니다:</p>
+            <ul>
+                <li>신청 또는 변경 시 허위 내용 등록</li>
+                <li>타인의 정보 도용</li>
+                <li>사이트에 게시된 정보의 무단 변경</li>
+                <li>사이트가 정한 정보 이외의 정보(컴퓨터 프로그램 등) 송신 또는 게시</li>
+                <li>사이트와 기타 제3자의 저작권 등 지적재산권 침해</li>
+                <li>사이트 및 기타 제3자의 명예 훼손 또는 업무 방해</li>
+                <li>외설 또는 폭력적인 메시지, 화상, 음성 등 공서양속에 반하는 정보 공개 또는 게시</li>
+                <li>해킹 행위 또는 컴퓨터 바이러스 유포</li>
+            </ul>
+
+            <h2>제7조 (저작권의 귀속 및 이용제한)</h2>
+            <ol>
+                <li>사이트가 작성한 콘텐츠에 대한 저작권 및 기타 지적재산권은 사이트에 귀속됩니다.</li>
+                <li>사용자는 서비스를 이용함으로써 얻은 정보를 사이트의 사전 승낙 없이 복제, 송신, 출판, 배포, 방송 등 기타 방법으로 영리 목적으로 이용하거나 제3자에게 이용하게 하여서는 안 됩니다.</li>
+            </ol>
+
+            <h2>제8조 (면책조항)</h2>
+            <ol>
+                <li>사이트는 천재지변 또는 이에 준하는 불가항력으로 인해 서비스를 제공할 수 없는 경우 서비스 제공에 관한 책임이 면제됩니다.</li>
+                <li>사이트는 사용자의 귀책사유로 인한 서비스 이용 장애에 대하여 책임을 지지 않습니다.</li>
+                <li>사이트는 사용자가 서비스를 이용하여 기대하는 수익을 얻지 못하거나 상실한 것에 대하여 책임을 지지 않습니다.</li>
+                <li>로또 번호 생성기는 무작위 알고리즘을 사용하며, 생성된 번호의 당첨 여부에 대해 사이트는 어떠한 책임도 지지 않습니다.</li>
+                <li>동물상 테스트는 AI 기반 재미 목적의 서비스이며, 결과의 정확성이나 과학적 근거에 대해 보증하지 않습니다.</li>
+            </ol>
+
+            <h2>제9조 (개인정보보호)</h2>
+            <p>사이트는 사용자의 개인정보를 보호하기 위하여 개인정보처리방침을 수립하고 이를 준수합니다. 자세한 내용은 <a href="privacy.html">개인정보처리방침</a>을 참조하시기 바랍니다.</p>
+
+            <h2>제10조 (광고의 게재)</h2>
+            <ol>
+                <li>사이트는 서비스 운영을 위해 Google AdSense 등의 광고를 게재할 수 있습니다.</li>
+                <li>사용자가 광고를 통해 외부 사이트로 연결될 경우, 해당 사이트의 정책은 사이트와 무관합니다.</li>
+                <li>광고 클릭 또는 광고를 통한 거래로 인해 발생하는 손실이나 문제에 대해 사이트는 책임을 지지 않습니다.</li>
+            </ol>
+
+            <h2>제11조 (분쟁의 해결)</h2>
+            <ol>
+                <li>사이트와 사용자 간 발생한 분쟁에 관한 소송은 대한민국 법을 준거법으로 합니다.</li>
+                <li>사이트와 사용자 간 제기된 소송은 민사소송법상의 관할법원에 제소합니다.</li>
+            </ol>
+
+            <h2>부칙</h2>
+            <p>본 약관은 2026년 3월 15일부터 시행됩니다.</p>
+
+            <footer>
+                <p>&copy; 2026 조코딩. All rights reserved.</p>
+                <p>
+                    <a href="index.html">홈</a> |
+                    <a href="privacy.html">개인정보처리방침</a> |
+                    <a href="terms.html">이용약관</a> |
+                    <a href="about.html">사이트 소개</a> |
+                    <a href="contact.html">문의하기</a>
+                </p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.getElementById('themeToggle');
+
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeToggle = document.getElementById('themeToggle');
+
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeToggle.textContent = '☀️';
+            } else {
+                themeToggle.textContent = '🌙';
+            }
+        }
+
+        loadTheme();
+    </script>
+</body>
+</html>

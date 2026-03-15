@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>제휴 문의</title>
+    <meta name="description" content="조코딩과의 제휴 및 문의사항을 남겨주세요. 빠르게 답변드리겠습니다.">
+    <meta name="keywords" content="제휴 문의, 조코딩 문의, 비즈니스 문의, 파트너십">
+    <title>제휴 문의 - 조코딩</title>
     <style>
         * {
             margin: 0;
@@ -255,6 +257,40 @@
         body.dark-mode .comments-title {
             color: #e8e8e8;
         }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            text-align: center;
+            color: #666;
+            font-size: 0.85em;
+            transition: border-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode footer {
+            border-top-color: #2a2a4e;
+            color: #b8b8b8;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 5px;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        body.dark-mode footer a {
+            color: #a5b4fc;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
     </style>
 </head>
 <body>
@@ -262,6 +298,7 @@
         <div class="nav-buttons">
             <a href="index.html" class="nav-btn">🏠 홈</a>
             <a href="animal-test.html" class="nav-btn">🐶😺 동물상 테스트</a>
+            <a href="about.html" class="nav-btn">ℹ️ 소개</a>
         </div>
         <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
         <h1>🤝 제휴 문의</h1>
@@ -304,6 +341,17 @@
             <h3 class="comments-title">💬 댓글</h3>
             <div id="disqus_thread"></div>
         </div>
+
+        <footer>
+            <p>&copy; 2026 조코딩. All rights reserved.</p>
+            <p>
+                <a href="index.html">홈</a> |
+                <a href="about.html">사이트 소개</a> |
+                <a href="privacy.html">개인정보처리방침</a> |
+                <a href="terms.html">이용약관</a> |
+                <a href="contact.html">문의하기</a>
+            </p>
+        </footer>
     </div>
 
     <script>

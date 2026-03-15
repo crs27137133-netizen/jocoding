@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="조코딩 사이트의 개인정보처리방침입니다. 사용자의 개인정보 보호를 위한 정책을 안내합니다.">
+    <title>개인정보처리방침 - 조코딩</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            margin: 0 auto;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        body.dark-mode .container {
+            background: #0f3460;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .nav-buttons {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            transition: color 0.3s ease;
+            margin-top: 40px;
+        }
+
+        body.dark-mode h1 {
+            color: #e8e8e8;
+        }
+
+        .last-updated {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .last-updated {
+            color: #b8b8b8;
+        }
+
+        .content {
+            color: #333;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .content {
+            color: #e8e8e8;
+        }
+
+        h2 {
+            color: #667eea;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode h2 {
+            color: #a5b4fc;
+        }
+
+        h3 {
+            color: #764ba2;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode h3 {
+            color: #c4b5fd;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode .highlight {
+            background: #1a1a2e;
+            border-left-color: #a5b4fc;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            transition: border-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode footer {
+            border-top-color: #2a2a4e;
+            color: #b8b8b8;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        body.dark-mode footer a {
+            color: #a5b4fc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-btn">🏠 홈</a>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
+
+        <h1>📋 개인정보처리방침</h1>
+        <p class="last-updated">최종 수정일: 2026년 3월 15일</p>
+
+        <div class="content">
+            <div class="highlight">
+                <strong>조코딩</strong>은 사용자의 개인정보를 소중히 여기며, 개인정보 보호법을 준수합니다.
+            </div>
+
+            <h2>1. 개인정보의 수집 및 이용 목적</h2>
+            <p>본 사이트는 다음의 목적으로 개인정보를 수집합니다:</p>
+            <ul>
+                <li><strong>제휴 문의 처리</strong>: 문의 내용 확인 및 답변 제공</li>
+                <li><strong>서비스 제공</strong>: 로또 번호 생성, 동물상 테스트 등 제공 서비스 이용</li>
+                <li><strong>서비스 개선</strong>: 사용자 경험 개선 및 신규 서비스 개발</li>
+            </ul>
+
+            <h2>2. 수집하는 개인정보 항목</h2>
+
+            <h3>2.1 제휴 문의 시</h3>
+            <ul>
+                <li>필수 항목: 회사명/이름, 이메일, 제목, 문의 내용</li>
+                <li>선택 항목: 연락처</li>
+            </ul>
+
+            <h3>2.2 서비스 이용 시</h3>
+            <ul>
+                <li>동물상 테스트: 업로드한 이미지 (분석 후 즉시 삭제, 저장하지 않음)</li>
+                <li>로또 번호 생성기: 브라우저 로컬 스토리지에만 저장 (서버 전송 없음)</li>
+            </ul>
+
+            <h3>2.3 자동 수집 정보</h3>
+            <ul>
+                <li>접속 로그, IP 주소, 쿠키, 브라우저 정보</li>
+                <li>서비스 이용 기록, 방문 일시</li>
+            </ul>
+
+            <h2>3. 개인정보의 보유 및 이용 기간</h2>
+            <ul>
+                <li><strong>제휴 문의</strong>: 문의 처리 완료 후 1년간 보관 후 파기</li>
+                <li><strong>이미지 데이터</strong>: 분석 즉시 삭제, 서버에 저장하지 않음</li>
+                <li><strong>로컬 데이터</strong>: 사용자가 직접 삭제 가능 (브라우저 로컬 스토리지)</li>
+            </ul>
+
+            <h2>4. 개인정보의 제3자 제공</h2>
+            <p>본 사이트는 원칙적으로 사용자의 개인정보를 외부에 제공하지 않습니다. 다만, 다음의 경우는 예외로 합니다:</p>
+            <ul>
+                <li>사용자가 사전에 동의한 경우</li>
+                <li>법령의 규정에 의거하거나, 수사 목적으로 법령에 정해진 절차와 방법에 따라 수사기관의 요구가 있는 경우</li>
+            </ul>
+
+            <h2>5. 개인정보 처리 위탁</h2>
+            <p>본 사이트는 서비스 향상을 위해 아래와 같이 개인정보 처리 업무를 외부에 위탁하고 있습니다:</p>
+            <ul>
+                <li><strong>Formspree</strong>: 제휴 문의 폼 처리</li>
+                <li><strong>Disqus</strong>: 댓글 서비스 제공</li>
+                <li><strong>Cloudflare Pages</strong>: 웹사이트 호스팅</li>
+                <li><strong>Google Teachable Machine</strong>: AI 이미지 분석 (이미지는 서버에 저장되지 않음)</li>
+            </ul>
+
+            <h2>6. 사용자의 권리</h2>
+            <p>사용자는 언제든지 다음의 권리를 행사할 수 있습니다:</p>
+            <ul>
+                <li>개인정보 열람 요구</li>
+                <li>개인정보 정정 및 삭제 요구</li>
+                <li>개인정보 처리 정지 요구</li>
+            </ul>
+            <p>권리 행사는 <a href="contact.html">제휴 문의</a> 페이지를 통해 요청하실 수 있습니다.</p>
+
+            <h2>7. 개인정보의 파기</h2>
+            <p>개인정보 보유기간이 경과하거나 처리목적이 달성된 경우, 지체 없이 해당 개인정보를 파기합니다:</p>
+            <ul>
+                <li><strong>전자적 파일</strong>: 복구 불가능한 방법으로 영구 삭제</li>
+                <li><strong>종이 문서</strong>: 분쇄 또는 소각</li>
+            </ul>
+
+            <h2>8. 쿠키의 사용</h2>
+            <p>본 사이트는 사용자 경험 개선을 위해 쿠키를 사용합니다:</p>
+            <ul>
+                <li><strong>테마 설정</strong>: 다크모드/라이트모드 선택 저장</li>
+                <li><strong>로또 번호 기록</strong>: 브라우저 로컬 스토리지 사용</li>
+            </ul>
+            <p>쿠키 설치를 거부하려면 웹 브라우저 설정에서 쿠키 허용을 거부할 수 있습니다.</p>
+
+            <h2>9. 개인정보 보호책임자</h2>
+            <div class="highlight">
+                <p><strong>개인정보 보호책임자</strong></p>
+                <ul>
+                    <li>이름: 조코딩 관리자</li>
+                    <li>연락처: <a href="contact.html">제휴 문의 페이지</a>를 통해 문의</li>
+                </ul>
+            </div>
+
+            <h2>10. 개인정보처리방침 변경</h2>
+            <p>본 개인정보처리방침은 법령, 정책 또는 보안기술의 변경에 따라 내용이 추가, 삭제 및 수정될 수 있습니다. 변경 시 웹사이트를 통해 공지하겠습니다.</p>
+
+            <h2>11. 광고 서비스</h2>
+            <p>본 사이트는 Google AdSense를 통해 광고를 게재합니다:</p>
+            <ul>
+                <li>Google은 쿠키를 사용하여 사용자의 관심사에 기반한 광고를 게재합니다</li>
+                <li>사용자는 <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google 광고 설정</a>에서 맞춤 광고를 선택 해제할 수 있습니다</li>
+                <li>자세한 내용은 <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google 광고 정책</a>을 참조하세요</li>
+            </ul>
+
+            <footer>
+                <p>&copy; 2026 조코딩. All rights reserved.</p>
+                <p>
+                    <a href="index.html">홈</a> |
+                    <a href="privacy.html">개인정보처리방침</a> |
+                    <a href="terms.html">이용약관</a> |
+                    <a href="about.html">사이트 소개</a> |
+                    <a href="contact.html">문의하기</a>
+                </p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.getElementById('themeToggle');
+
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeToggle = document.getElementById('themeToggle');
+
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeToggle.textContent = '☀️';
+            } else {
+                themeToggle.textContent = '🌙';
+            }
+        }
+
+        loadTheme();
+    </script>
+</body>
+</html>
