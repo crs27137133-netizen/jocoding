@@ -479,6 +479,231 @@
         footer p {
             margin: 5px 0;
         }
+
+        /* 콘텐츠 섹션 공통 스타일 */
+        .content-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+            transition: border-color 0.3s ease;
+        }
+
+        body.dark-mode .content-section {
+            border-top-color: #2a2a4e;
+        }
+
+        .content-section h2 {
+            font-size: 1.4em;
+            color: #333;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .content-section h2 {
+            color: #e8e8e8;
+        }
+
+        .content-section p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 12px;
+            font-size: 0.97em;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .content-section p {
+            color: #b8b8cc;
+        }
+
+        /* 사용법 스텝 */
+        .how-to-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: #f8f9ff;
+            border-radius: 10px;
+            padding: 14px 16px;
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode .step-item {
+            background: #1e1e3a;
+        }
+
+        .step-num {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            color: #444;
+            line-height: 1.6;
+            font-size: 0.95em;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .step-text {
+            color: #c0c0d8;
+        }
+
+        /* 동물상 유형 카드 */
+        .animal-type-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-top: 14px;
+        }
+
+        .animal-type-card {
+            background: #f8f9ff;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode .animal-type-card {
+            background: #1e1e3a;
+        }
+
+        .animal-type-card .animal-emoji {
+            font-size: 2.5em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .animal-type-card h3 {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .animal-type-card h3 {
+            color: #e0e0f0;
+        }
+
+        .animal-type-card ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        .animal-type-card ul li {
+            color: #666;
+            font-size: 0.88em;
+            line-height: 1.7;
+            padding: 3px 0;
+            padding-left: 16px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .animal-type-card ul li {
+            color: #a0a0b8;
+        }
+
+        .animal-type-card ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+
+        /* FAQ */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .faq-item {
+            border: 1px solid #e0e0ee;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+
+        body.dark-mode .faq-item {
+            border-color: #2a2a4e;
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            background: #f8f9ff;
+            border: none;
+            padding: 14px 16px;
+            font-size: 0.95em;
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode .faq-question {
+            background: #1e1e3a;
+            color: #e0e0f0;
+        }
+
+        .faq-question:hover {
+            background: #eef0ff;
+        }
+
+        body.dark-mode .faq-question:hover {
+            background: #252545;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 12px 16px 14px;
+            color: #555;
+            font-size: 0.92em;
+            line-height: 1.7;
+            background: white;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode .faq-answer {
+            background: #16162e;
+            color: #b0b0c8;
+        }
+
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+            font-style: normal;
+        }
     </style>
     <!-- Google AdSense -->
     <meta name="google-adsense-account" content="ca-pub-5417584369314195">
@@ -520,6 +745,110 @@
 
         <div id="label-container"></div>
         <div id="result-message" class="result-message"></div>
+
+        <!-- 동물상 테스트 소개 -->
+        <div class="content-section">
+            <h2>🐾 동물상 테스트란?</h2>
+            <p>동물상 테스트는 AI가 얼굴 사진을 분석해 강아지상, 고양이상 등 어떤 동물의 이미지와 닮았는지 알려주는 재미있는 서비스입니다. 평소에 친구들이 "너는 강아지 같아", "고양이 느낌이다"라고 이야기했다면, AI의 객관적인 분석 결과와 비교해보세요!</p>
+            <p>저희 테스트는 Google Teachable Machine 기반의 AI 모델을 사용합니다. 업로드된 이미지는 브라우저 안에서만 분석되며, 서버에 저장되거나 전송되지 않으므로 안심하고 이용하실 수 있습니다. 어디까지나 재미로 즐기는 엔터테인먼트 서비스입니다.</p>
+        </div>
+
+        <!-- 사용 방법 -->
+        <div class="content-section">
+            <h2>📋 사용 방법</h2>
+            <div class="how-to-steps">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div class="step-text"><strong>얼굴 사진 준비</strong> — 얼굴이 정면을 향하고 잘 보이는 사진을 준비하세요. JPG, PNG 등 일반적인 이미지 형식을 지원합니다.</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-text"><strong>사진 업로드</strong> — 업로드 영역을 클릭하거나 파일을 드래그해서 올려주세요. 사진 미리보기가 나타납니다.</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div class="step-text"><strong>동물상 분석하기 클릭</strong> — 버튼을 누르면 AI가 사진을 분석합니다. 잠시 기다리면 결과가 나타납니다.</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <div class="step-text"><strong>결과 확인 및 공유</strong> — 강아지상·고양이상 비율이 퍼센트로 표시됩니다. 결과를 캡처해서 친구들과 공유해보세요!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 동물상 유형 설명 -->
+        <div class="content-section">
+            <h2>🐶😺 동물상 유형 특징</h2>
+            <p>동물상은 얼굴의 전체적인 인상, 눈의 형태, 눈썹의 모양, 얼굴형 등 다양한 요소를 종합해 분류합니다. 어떤 특징이 각 유형에 해당하는지 알아보세요.</p>
+            <div class="animal-type-grid">
+                <div class="animal-type-card">
+                    <span class="animal-emoji">🐶</span>
+                    <h3>강아지상</h3>
+                    <ul>
+                        <li>둥글고 순한 눈매</li>
+                        <li>처진 눈꼬리</li>
+                        <li>둥근 얼굴형</li>
+                        <li>두껍고 풍성한 눈썹</li>
+                        <li>도톰하고 귀여운 입술</li>
+                        <li>전체적으로 온화하고 친근한 인상</li>
+                    </ul>
+                </div>
+                <div class="animal-type-card">
+                    <span class="animal-emoji">😺</span>
+                    <h3>고양이상</h3>
+                    <ul>
+                        <li>날카롭고 시원한 눈매</li>
+                        <li>올라간 눈꼬리</li>
+                        <li>갸름하고 긴 얼굴형</li>
+                        <li>가늘고 뚜렷한 눈썹</li>
+                        <li>얇고 세련된 입술</li>
+                        <li>전체적으로 도시적이고 세련된 인상</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="content-section">
+            <h2>❓ 자주 묻는 질문 (FAQ)</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        사진이 서버에 저장되나요?
+                        <i class="faq-icon">▼</i>
+                    </button>
+                    <div class="faq-answer">아니요. 업로드된 사진은 사용자의 브라우저 안에서만 분석되며, 저희 서버에 전송되거나 저장되지 않습니다. 분석이 완료되면 이미지 데이터는 즉시 제거됩니다. 개인정보를 철저히 보호합니다.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        어떤 사진을 올려야 결과가 정확한가요?
+                        <i class="faq-icon">▼</i>
+                    </button>
+                    <div class="faq-answer">얼굴이 정면을 향하고 잘 보이는 밝은 사진을 사용하면 더 정확한 결과를 얻을 수 있습니다. 모자, 선글라스 등으로 얼굴이 가려진 사진이나 매우 어두운 사진은 분석 정확도가 낮을 수 있습니다. 다만 이 서비스는 재미 목적의 엔터테인먼트이므로 절대적인 기준은 없습니다.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        AI 분석 결과가 과학적으로 검증된 것인가요?
+                        <i class="faq-icon">▼</i>
+                    </button>
+                    <div class="faq-answer">이 테스트는 재미를 위한 엔터테인먼트 서비스로, 과학적·의학적으로 검증된 결과가 아닙니다. AI 모델이 학습한 데이터를 기반으로 유사도를 측정하는 것이므로, 결과를 가볍고 즐겁게 받아들여 주세요.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        완전 무료로 이용 가능한가요?
+                        <i class="faq-icon">▼</i>
+                    </button>
+                    <div class="faq-answer">네, 회원가입 없이 완전 무료로 이용하실 수 있습니다. 이용 횟수 제한도 없으므로 여러 사진으로 자유롭게 테스트해보세요.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        결과가 매번 다르게 나오는 이유가 있나요?
+                        <i class="faq-icon">▼</i>
+                    </button>
+                    <div class="faq-answer">동일한 사진으로는 동일한 결과가 나옵니다. 결과가 다르게 나온다면 사진의 밝기, 각도, 해상도 등의 차이 때문입니다. AI는 사진의 픽셀 정보를 기반으로 분석하므로, 같은 사람이라도 사진에 따라 결과가 다를 수 있습니다.</div>
+                </div>
+            </div>
+        </div>
 
         <div class="comments-section">
             <h3 class="comments-title">💬 댓글</h3>
@@ -685,6 +1014,12 @@
             uploadArea.style.display = 'block';
             document.getElementById('label-container').innerHTML = '';
             document.getElementById('result-message').classList.remove('show');
+        }
+
+        // FAQ 토글
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            item.classList.toggle('open');
         }
 
         function getEmoji(className) {

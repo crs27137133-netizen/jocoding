@@ -349,6 +349,211 @@
         footer p {
             margin: 5px 0;
         }
+
+        /* 콘텐츠 섹션 공통 스타일 */
+        .content-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+            transition: border-color 0.3s ease;
+        }
+
+        body.dark-mode .content-section {
+            border-top-color: #2a2a4e;
+        }
+
+        .content-section h2 {
+            font-size: 1.4em;
+            color: #333;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .content-section h2 {
+            color: #e8e8e8;
+        }
+
+        .content-section p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 12px;
+            font-size: 0.97em;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .content-section p {
+            color: #b8b8cc;
+        }
+
+        /* 사용법 스텝 */
+        .how-to-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: #f8f9ff;
+            border-radius: 10px;
+            padding: 14px 16px;
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode .step-item {
+            background: #1e1e3a;
+        }
+
+        .step-num {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            color: #444;
+            line-height: 1.6;
+            font-size: 0.95em;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .step-text {
+            color: #c0c0d8;
+        }
+
+        /* 팁 박스 */
+        .tip-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-top: 12px;
+        }
+
+        .tip-card {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            border-radius: 8px;
+            padding: 14px 16px;
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode .tip-card {
+            background: #1e1e3a;
+            border-left-color: #a5b4fc;
+        }
+
+        .tip-card strong {
+            display: block;
+            color: #333;
+            margin-bottom: 6px;
+            font-size: 0.95em;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .tip-card strong {
+            color: #e0e0f0;
+        }
+
+        .tip-card span {
+            color: #666;
+            font-size: 0.88em;
+            line-height: 1.6;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .tip-card span {
+            color: #a0a0b8;
+        }
+
+        /* FAQ */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .faq-item {
+            border: 1px solid #e0e0ee;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+
+        body.dark-mode .faq-item {
+            border-color: #2a2a4e;
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            background: #f8f9ff;
+            border: none;
+            padding: 14px 16px;
+            font-size: 0.95em;
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode .faq-question {
+            background: #1e1e3a;
+            color: #e0e0f0;
+        }
+
+        .faq-question:hover {
+            background: #eef0ff;
+        }
+
+        body.dark-mode .faq-question:hover {
+            background: #252545;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 12px 16px 14px;
+            color: #555;
+            font-size: 0.92em;
+            line-height: 1.7;
+            background: white;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode .faq-answer {
+            background: #16162e;
+            color: #b0b0c8;
+        }
+
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+            font-style: normal;
+        }
     </style>
     <!-- Google AdSense -->
     <meta name="google-adsense-account" content="ca-pub-5417584369314195">
@@ -383,6 +588,109 @@
             <h3>생성 기록</h3>
             <div id="historyContainer"></div>
             <button class="clear-btn" onclick="clearHistory()">기록 삭제</button>
+        </div>
+
+        <!-- 로또 번호 생성기 소개 -->
+        <div class="content-section">
+            <h2>🎰 로또 번호 생성기란?</h2>
+            <p>로또 번호 생성기는 1부터 45까지의 숫자 중에서 무작위로 6개의 번호를 자동으로 선택해주는 무료 서비스입니다. 매주 로또 번호를 고르는 데 고민이 많으셨다면, 이제 클릭 한 번으로 행운의 번호를 받아보세요.</p>
+            <p>저희 생성기는 컴퓨터의 난수 알고리즘을 사용해 완전히 무작위로 번호를 뽑습니다. 어떤 번호도 다른 번호보다 유리하지 않으며, 매 생성마다 독립적인 결과를 제공합니다. 생성된 번호는 최근 5회분까지 기록되어 편리하게 확인할 수 있습니다.</p>
+        </div>
+
+        <!-- 사용 방법 -->
+        <div class="content-section">
+            <h2>📋 사용 방법</h2>
+            <div class="how-to-steps">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div class="step-text"><strong>번호 생성하기 버튼 클릭</strong> — 화면 중앙의 보라색 버튼을 누르면 즉시 6개의 번호가 생성됩니다.</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-text"><strong>번호 확인</strong> — 색깔별로 구분된 번호 볼에 숫자가 표시됩니다. 실제 로또 공과 동일한 색상 규칙이 적용됩니다.</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div class="step-text"><strong>원하는 만큼 반복 생성</strong> — 마음에 드는 번호가 나올 때까지 여러 번 눌러보세요. 최근 5회 기록이 자동으로 저장됩니다.</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <div class="step-text"><strong>복권 구매 시 활용</strong> — 생성된 번호를 복권 판매점에서 수동으로 입력하거나 앱에 기록해두세요.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 로또 꿀팁 -->
+        <div class="content-section">
+            <h2>💡 로또 관련 유용한 정보</h2>
+            <div class="tip-grid">
+                <div class="tip-card">
+                    <strong>로또 당첨 확률</strong>
+                    <span>1등 당첨 확률은 약 814만 분의 1입니다. 즐거운 기대감으로 참여하는 것이 현명한 방법입니다.</span>
+                </div>
+                <div class="tip-card">
+                    <strong>번호 색상의 의미</strong>
+                    <span>1~10은 노란색, 11~20은 파란색, 21~30은 빨간색, 31~40은 검정색, 41~45는 초록색으로 구분됩니다.</span>
+                </div>
+                <div class="tip-card">
+                    <strong>자동과 수동의 차이</strong>
+                    <span>자동 구매는 기계가 무작위 선택, 수동 구매는 본인이 번호 직접 선택. 당첨 확률은 동일합니다.</span>
+                </div>
+                <div class="tip-card">
+                    <strong>구매 마감 시간</strong>
+                    <span>매주 토요일 오후 8시까지 구매 가능합니다. 추첨은 오후 8시 35분에 진행됩니다.</span>
+                </div>
+                <div class="tip-card">
+                    <strong>당첨금 수령 기간</strong>
+                    <span>당첨 확인 후 1년 이내에 수령해야 합니다. 기간 초과 시 복권기금으로 귀속됩니다.</span>
+                </div>
+                <div class="tip-card">
+                    <strong>책임감 있는 복권 구매</strong>
+                    <span>복권은 소액의 재미로 즐기는 것이 좋습니다. 과도한 구매는 가계에 부담이 될 수 있습니다.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="content-section">
+            <h2>❓ 자주 묻는 질문 (FAQ)</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        이 번호 생성기는 완전히 무료인가요?
+                        <i class="faq-icon">▼</i>
+                    </button>
+                    <div class="faq-answer">네, 완전히 무료입니다. 회원가입도 필요 없고, 어떠한 비용도 발생하지 않습니다. 언제든지 원하는 만큼 번호를 생성할 수 있습니다.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        생성된 번호가 정말 무작위인가요?
+                        <i class="faq-icon">▼</i>
+                    </button>
+                    <div class="faq-answer">네, JavaScript의 Math.random() 함수를 활용한 난수 알고리즘으로 완전히 무작위 번호를 생성합니다. 어떤 패턴이나 특정 번호에 대한 편향 없이 동등한 확률로 번호가 선택됩니다.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        생성된 번호가 서버에 저장되나요?
+                        <i class="faq-icon">▼</i>
+                    </button>
+                    <div class="faq-answer">아니요. 생성된 번호는 오직 사용자의 브라우저 내에서만 처리되며, 저희 서버에는 일절 전송되거나 저장되지 않습니다. 생성 기록은 브라우저를 닫으면 사라집니다.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        한 번에 몇 세트를 생성할 수 있나요?
+                        <i class="faq-icon">▼</i>
+                    </button>
+                    <div class="faq-answer">버튼을 누를 때마다 1세트(6개 번호)가 생성되며, 최근 5세트까지 화면에 기록이 표시됩니다. 횟수 제한 없이 계속 생성할 수 있습니다.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        모바일에서도 사용 가능한가요?
+                        <i class="faq-icon">▼</i>
+                    </button>
+                    <div class="faq-answer">네, 스마트폰과 태블릿 등 모든 기기에서 사용 가능합니다. 반응형 디자인으로 제작되어 화면 크기에 맞게 자동으로 최적화됩니다.</div>
+                </div>
+            </div>
         </div>
 
         <div class="comments-section">
@@ -509,6 +817,12 @@
             } else {
                 themeToggle.textContent = '🌙';
             }
+        }
+
+        // FAQ 토글
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            item.classList.toggle('open');
         }
 
         // 페이지 로드 시 초기 표시
