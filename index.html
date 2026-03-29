@@ -474,6 +474,63 @@
             color: #e8e8e8;
         }
 
+        /* SNS 공유 섹션 */
+        .share-section {
+            display: none;
+            margin-top: 16px;
+            padding: 18px;
+            background: linear-gradient(135deg, #f8f0ff, #fff0f8);
+            border-radius: 14px;
+            text-align: center;
+            border: 2px dashed #c084fc;
+        }
+        body.dark-mode .share-section {
+            background: linear-gradient(135deg, #1e1240, #2a1030);
+            border-color: #7c3aed;
+        }
+        .share-section.show { display: block; animation: fadeIn 0.4s ease; }
+        .share-title {
+            font-size: 1em;
+            font-weight: bold;
+            color: #7c3aed;
+            margin-bottom: 12px;
+        }
+        body.dark-mode .share-title { color: #c084fc; }
+        .share-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        .share-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 9px 14px;
+            border: none;
+            border-radius: 9px;
+            font-size: 0.85em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.15s, opacity 0.15s;
+            color: #fff;
+        }
+        .share-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+        .share-btn:active { transform: scale(0.96); }
+        .share-btn.kakao  { background: #FEE500; color: #3C1E1E; }
+        .share-btn.twitter { background: #000; }
+        .share-btn.facebook { background: #1877F2; }
+        .share-btn.copy-num { background: #10b981; }
+        .share-btn.copy  { background: #6b7280; }
+        .share-btn.native { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .copy-feedback {
+            font-size: 0.82em;
+            color: #10b981;
+            min-height: 18px;
+            font-weight: bold;
+        }
+
         footer {
             margin-top: 40px;
             padding-top: 20px;
@@ -717,6 +774,8 @@
     <meta name="google-adsense-account" content="ca-pub-5417584369314195">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5417584369314195"
          crossorigin="anonymous"></script>
+    <!-- Kakao SDK (공유 기능) -->
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
@@ -741,6 +800,25 @@
         </div>
 
         <button class="generate-btn" onclick="generateNumbers()">번호 생성하기</button>
+
+        <!-- SNS 공유 -->
+        <div id="share-section" class="share-section">
+            <div class="share-title">🍀 이 번호로 당첨되길! 친구들과 공유해보세요</div>
+            <div class="share-buttons">
+                <button class="share-btn native" onclick="nativeShare()">📤 공유하기</button>
+                <button class="share-btn kakao" onclick="shareKakao()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.477 2 10.5c0 2.568 1.453 4.836 3.674 6.234L4.5 21l4.574-2.287C10.157 19.557 11.061 19.75 12 19.75c5.523 0 10-3.477 10-7.25S17.523 3 12 3z"/></svg>
+                    카카오톡
+                </button>
+                <button class="share-btn twitter" onclick="shareTwitter()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    X 공유
+                </button>
+                <button class="share-btn copy-num" onclick="copyNumbers()">📋 번호 복사</button>
+                <button class="share-btn copy" onclick="copyLink()">🔗 링크 복사</button>
+            </div>
+            <div id="copy-feedback" class="copy-feedback"></div>
+        </div>
 
         <div class="history">
             <h3>생성 기록</h3>
@@ -885,6 +963,8 @@
     <script>
         let history = [];
 
+        let currentNumbers = [];
+
         function generateNumbers() {
             const numbers = [];
 
@@ -898,12 +978,81 @@
 
             // 번호 정렬
             numbers.sort((a, b) => a - b);
+            currentNumbers = numbers;
 
             // 화면에 표시
             displayNumbers(numbers);
 
             // 기록에 추가
             addToHistory(numbers);
+
+            // 공유 섹션 표시
+            document.getElementById('share-section').classList.add('show');
+        }
+
+        /* ===== SNS 공유 함수 ===== */
+        function getShareMsg() {
+            const nums = currentNumbers.join(', ');
+            return `🍀 이번 주 행운의 로또 번호: ${nums}\n조코딩 무료 로또 번호 생성기 👉 jocoding.uk`;
+        }
+
+        function nativeShare() {
+            const text = getShareMsg();
+            if (navigator.share) {
+                navigator.share({ title: '로또 번호 생성기 - 조코딩', text, url: 'https://jocoding.uk' }).catch(() => {});
+            } else {
+                copyLink();
+            }
+        }
+
+        function shareKakao() {
+            if (typeof Kakao !== 'undefined' && Kakao.isInitialized()) {
+                const nums = currentNumbers.join(', ');
+                Kakao.Share.sendDefault({
+                    objectType: 'feed',
+                    content: {
+                        title: `🍀 이번 주 행운의 번호: ${nums}`,
+                        description: '조코딩 무료 로또 번호 생성기로 당신의 행운 번호를 뽑아보세요!',
+                        imageUrl: 'https://jocoding.uk/og-image.png',
+                        link: { mobileWebUrl: 'https://jocoding.uk', webUrl: 'https://jocoding.uk' }
+                    },
+                    buttons: [{ title: '나도 번호 뽑기', link: { mobileWebUrl: 'https://jocoding.uk', webUrl: 'https://jocoding.uk' } }]
+                });
+            } else {
+                nativeShare();
+            }
+        }
+
+        function shareTwitter() {
+            const nums = currentNumbers.join(', ');
+            const text = `🍀 이번 주 로또 번호: ${nums}\n조코딩 무료 번호 생성기! #로또 #조코딩`;
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent('https://jocoding.uk')}`, '_blank', 'width=600,height=400');
+        }
+
+        function copyNumbers() {
+            const nums = currentNumbers.join(', ');
+            const text = `🍀 이번 주 행운의 번호: ${nums}\n(조코딩 로또 번호 생성기 - jocoding.uk)`;
+            navigator.clipboard.writeText(text).then(() => showFeedback('번호가 복사되었습니다! 📋')).catch(() => {
+                const ta = document.createElement('textarea');
+                ta.value = text; document.body.appendChild(ta); ta.select();
+                document.execCommand('copy'); document.body.removeChild(ta);
+                showFeedback('번호가 복사되었습니다! 📋');
+            });
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText('https://jocoding.uk').then(() => showFeedback('링크가 복사되었습니다! 🔗')).catch(() => {
+                const ta = document.createElement('textarea');
+                ta.value = 'https://jocoding.uk'; document.body.appendChild(ta); ta.select();
+                document.execCommand('copy'); document.body.removeChild(ta);
+                showFeedback('링크가 복사되었습니다! 🔗');
+            });
+        }
+
+        function showFeedback(msg) {
+            const el = document.getElementById('copy-feedback');
+            el.textContent = msg;
+            setTimeout(() => { el.textContent = ''; }, 3000);
         }
 
         function displayNumbers(numbers) {
