@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://jocoding-819.pages.dev/sitemap.xml
+Sitemap: https://jocoding.uk/sitemap.xml
 
 # Disallow specific paths
 Disallow: /.wrangler/
